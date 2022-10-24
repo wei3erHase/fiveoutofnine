@@ -156,7 +156,8 @@ library Engine {
             if (pieceAtToIndex != 0) {
                 if (pieceAtToIndex < 5) { // Piece is not a queen or king
                     captureValue = (getPst(pieceAtToIndex) >> (7 * (0x23 - toIndex))) & 0x7F;
-                } else if (toIndex < 0x12) { // Piece is queen or king and in the closer half
+                } else
+                if (toIndex < 0x12) { // Piece is queen or king and in the closer half
                     captureValue = (getPst(pieceAtToIndex) >> (0xC * (0x11 - toIndex))) & 0xFFF;
                 } else { // Piece is queen or king and in the further half
                     captureValue = (getPstTwo(pieceAtToIndex) >> (0xC * (0x23 - toIndex))) & 0xFFF;
@@ -165,7 +166,8 @@ library Engine {
             if (pieceAtFromIndex < 5) { // Piece is not a queen or king
                 oldPst = (getPst(pieceAtFromIndex) >> (7 * fromIndex)) & 0x7F;
                 newPst = (getPst(pieceAtFromIndex) >> (7 * toIndex)) & 0x7F;
-            } else if (fromIndex < 0x12) { // Piece is queen or king and in the closer half
+            } else
+            if (fromIndex < 0x12) { // Piece is queen or king and in the closer half
                 oldPst = (getPstTwo(pieceAtFromIndex) >> (0xC * fromIndex)) & 0xFFF;
                 newPst = (getPstTwo(pieceAtFromIndex) >> (0xC * toIndex)) & 0xFFF;
             } else { // Piece is queen or king and in the further half
