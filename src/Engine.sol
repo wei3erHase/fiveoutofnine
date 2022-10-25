@@ -95,9 +95,9 @@ library Engine {
                 }
             }
 
-            // If a king is captured, stop the recursive call stack and return a score of -4_000.
+            // If a king is captured, stop the recursive call stack and return a score of 4_000.
             // There is nothing more to consider.
-            if (((_board >> ((bestMove & 0x3F) << 2)) & 7) == 6) return -4_000;
+            if (((_board >> ((bestMove & 0x3F) << 2)) & 7) == 6) return 4_000;
             return _board & 1 == 0
                 ? bestScore + negaMax(_board.applyMove(bestMove), _depth - 1)
                 : -bestScore + negaMax(_board.applyMove(bestMove), _depth - 1);
